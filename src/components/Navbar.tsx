@@ -58,7 +58,7 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="nav-actions">
-            <a href="/Vishal_Jankar_Resume.pdf?v=20260617" download className="btn btn-primary nav-resume-btn">
+            <a href="/Vishal_Jankar_Resume.pdf" download="Vishal_Jankar_Resume.pdf" className="btn btn-primary nav-resume-btn">
               <Download size={15}/> Resume
             </a>
             <button className="hamburger" onClick={() => setOpen(!open)} aria-label="menu">
@@ -77,7 +77,7 @@ export default function Navbar() {
               <a href="https://github.com/Vishalj154" target="_blank" rel="noreferrer" className="btn-icon" aria-label="GitHub"><GithubIcon size={18}/></a>
               <a href="https://linkedin.com/in/vishal-jankar" target="_blank" rel="noreferrer" className="btn-icon" aria-label="LinkedIn"><LinkedinIcon size={18}/></a>
             </div>
-            <a href="/Vishal_Jankar_Resume.pdf?v=20260617" download className="btn btn-primary" style={{width:'100%',marginTop:'0.25rem'}}><Download size={15}/>Download Resume</a>
+            <a href="/Vishal_Jankar_Resume.pdf" download="Vishal_Jankar_Resume.pdf" className="btn btn-primary" style={{width:'100%',marginTop:'0.25rem'}}><Download size={15}/>Download Resume</a>
           </motion.div>
         )}
       </AnimatePresence>
