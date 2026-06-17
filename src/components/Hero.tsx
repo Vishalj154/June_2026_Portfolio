@@ -49,7 +49,7 @@ export default function Hero() {
           </motion.div>
           <motion.div variants={up} className="hero-ctas">
             <button onClick={()=>goto('projects')} className="btn btn-primary">View Projects <ArrowRight size={16}/></button>
-            <a href="/Vishal_Jankar_Resume.pdf" download className="btn btn-secondary"><FileText size={16}/> Download CV</a>
+            <a href="/Vishal_Jankar_Resume.pdf?v=20260617" download className="btn btn-secondary"><FileText size={16}/> Download CV</a>
           </motion.div>
           <motion.div variants={up} className="hero-socials">
             <a href="https://github.com/Vishalj154" target="_blank" rel="noreferrer" className="btn-icon" aria-label="GitHub"><GithubIcon size={20}/></a>
