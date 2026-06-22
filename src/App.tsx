@@ -11,10 +11,14 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackgroundParticles from './components/BackgroundParticles';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   return (
     <div className="app-wrapper">
+      {/* Custom Cursor Glow */}
+      <CustomCursor />
+
       {/* Background Particles Canvas */}
       <BackgroundParticles />
 

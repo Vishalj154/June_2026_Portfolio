@@ -42,7 +42,16 @@ export default function Projects() {
       </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(320px,1fr))',gap:'1.75rem'}}>
         {projects.map((p,i) => (
-          <motion.div key={p.title} className="glass-card" style={{display:'flex',flexDirection:'column',gap:'1.25rem'}} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.5,delay:i*0.12}}>
+          <motion.div 
+            key={p.title} 
+            className="glass-card" 
+            style={{display:'flex',flexDirection:'column',gap:'1.25rem'}} 
+            initial={{opacity:0,y:30}} 
+            whileInView={{opacity:1,y:0}} 
+            viewport={{once:true}} 
+            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{duration:0.5,delay:i*0.12}}
+          >
             <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start'}}>
               <div style={{fontSize:'2.5rem'}}>{p.emoji}</div>
               <div style={{display:'flex',gap:'0.5rem'}}>

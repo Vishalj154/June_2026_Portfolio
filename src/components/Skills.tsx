@@ -96,6 +96,29 @@ const getIcon = (name: string) => {
   }
 };
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 15 },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    y: 0,
+    transition: { 
+      type: 'spring',
+      stiffness: 300,
+      damping: 20
+    }
+  }
+};
+
 export default function Skills() {
   return (
     <section id="skills" className="skills-section">
@@ -119,8 +142,14 @@ export default function Skills() {
               <span className="skill-cat-emoji">{cat.emoji}</span>
               <h3 className="skill-cat-title">{cat.title}</h3>
             </div>
-            <div className="skill-items">
-              {cat.skills.map((s, si) => (
+            <motion.div 
+              className="skill-items"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              {cat.skills.map((s) => (
                 <motion.div
                   key={s.n}
                   className="skill-pill"
@@ -128,23 +157,15 @@ export default function Skills() {
                     '--hover-bg': s.color,
                     '--hover-border': s.border,
                   } as React.CSSProperties}
+                  variants={itemVariants}
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 20,
-                    delay: (ci * 0.1) + (si * 0.05) 
-                  }}
                 >
                   <span className="skill-pill-icon">{getIcon(s.n)}</span>
                   <span className="skill-pill-name">{s.n}</span>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         ))}
       </div>

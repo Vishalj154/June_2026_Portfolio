@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Mail, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
@@ -17,6 +18,48 @@ const up = {
   },
 };
 
+const words = ['Full-Stack Developer', 'Computer Engineer', 'Problem Solver'];
+
+function TypingEffect() {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+  const [blink, setBlink] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBlink((prev) => !prev);
+    }, 550);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (subIndex === words[index].length + 1 && !reverse) {
+      const timeout = setTimeout(() => setReverse(true), 2500);
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 45 : 90);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, reverse, index]);
+
+  return (
+    <span style={{ display: 'inline-block', minWidth: '1px' }}>
+      {words[index].substring(0, subIndex)}
+      <span style={{ opacity: blink ? 1 : 0, color: 'var(--accent-primary)', marginLeft: '1px', fontWeight: 'bold' }}>|</span>
+    </span>
+  );
+}
+
 export default function Hero() {
   const goto = (id: string) => {
     const el = document.getElementById(id);
@@ -34,8 +77,8 @@ export default function Hero() {
           <motion.h1 variants={up} className="hero-name">
             Hi, I'm<br/><span className="gradient-text">Vishal Jankar</span>
           </motion.h1>
-          <motion.h2 variants={up} className="hero-role">
-            Full-Stack Developer &amp; Computer Engineer
+          <motion.h2 variants={up} className="hero-role" style={{ minHeight: '2.2rem', display: 'flex', alignItems: 'center' }}>
+            <TypingEffect />
           </motion.h2>
           <motion.p variants={up} className="hero-desc">
             CS undergrad at FCRIT Vashi (9.07 CGPA) building full-stack applications with 
