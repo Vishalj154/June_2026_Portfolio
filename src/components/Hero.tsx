@@ -53,7 +53,7 @@ export default function Hero() {
           </motion.div>
           <motion.div variants={up} className="hero-socials">
             <a href="https://github.com/Vishalj154" target="_blank" rel="noreferrer" className="btn-icon" aria-label="GitHub"><GithubIcon size={20}/></a>
-            <a href="https://linkedin.com/in/vishal-jankar" target="_blank" rel="noreferrer" className="btn-icon" aria-label="LinkedIn"><LinkedinIcon size={20}/></a>
+            <a href="https://www.linkedin.com/in/vishal-jankar-b55948347/" target="_blank" rel="noreferrer" className="btn-icon" aria-label="LinkedIn"><LinkedinIcon size={20}/></a>
             <a href="mailto:vishaljankar2534@gmail.com" className="btn-icon" aria-label="Email"><Mail size={20}/></a>
             <a href="tel:+919082752201" className="btn-icon" aria-label="Phone"><Phone size={20}/></a>
           </motion.div>

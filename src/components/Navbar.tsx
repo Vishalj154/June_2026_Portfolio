@@ -75,7 +75,7 @@ export default function Navbar() {
             ))}
             <div style={{display:'flex',gap:'0.75rem',marginTop:'0.5rem'}}>
               <a href="https://github.com/Vishalj154" target="_blank" rel="noreferrer" className="btn-icon" aria-label="GitHub"><GithubIcon size={18}/></a>
-              <a href="https://linkedin.com/in/vishal-jankar" target="_blank" rel="noreferrer" className="btn-icon" aria-label="LinkedIn"><LinkedinIcon size={18}/></a>
+              <a href="https://www.linkedin.com/in/vishal-jankar-b55948347/" target="_blank" rel="noreferrer" className="btn-icon" aria-label="LinkedIn"><LinkedinIcon size={18}/></a>
             </div>
             <a href="/Vishal_Jankar_Resume.pdf" download="Vishal_Jankar_Resume.pdf" className="btn btn-primary" style={{width:'100%',marginTop:'0.25rem'}}><Download size={15}/>Download Resume</a>
           </motion.div>
