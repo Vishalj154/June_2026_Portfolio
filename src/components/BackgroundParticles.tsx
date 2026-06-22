@@ -33,9 +33,9 @@ export default function BackgroundParticles() {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.35;
-        this.vy = (Math.random() - 0.5) * 0.35;
-        this.radius = Math.random() * 1.5 + 0.8;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
         this.hue = Math.random() > 0.5 ? 220 : 270;
       }
 
@@ -69,13 +69,18 @@ export default function BackgroundParticles() {
       draw(context: CanvasRenderingContext2D) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        context.fillStyle = `hsla(${this.hue}, 70%, 55%, 0.22)`;
+        context.fillStyle = `hsla(${this.hue}, 75%, 50%, 0.38)`;
+        context.fill();
+
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius * 2.5, 0, Math.PI * 2);
+        context.fillStyle = `hsla(${this.hue}, 75%, 50%, 0.06)`;
         context.fill();
       }
     }
 
     // Initialize particles array
-    const particleCount = Math.min(65, Math.floor((width * height) / 22000));
+    const particleCount = Math.min(90, Math.floor((width * height) / 16000));
     const particles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
@@ -99,10 +104,10 @@ export default function BackgroundParticles() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           // Only draw lines if they are close
-          if (dist < 120) {
-            const alpha = 0.05 * (1 - dist / 120);
+          if (dist < 130) {
+            const alpha = 0.12 * (1 - dist / 130);
             ctx.strokeStyle = `rgba(124, 58, 237, ${alpha})`;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -119,9 +124,9 @@ export default function BackgroundParticles() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < mouse.radius) {
-            const alpha = 0.14 * (1 - dist / mouse.radius);
+            const alpha = 0.28 * (1 - dist / mouse.radius);
             ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
-            ctx.lineWidth = 1.0;
+            ctx.lineWidth = 1.2;
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(p.x, p.y);

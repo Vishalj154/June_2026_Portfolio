@@ -147,15 +147,18 @@
 .premium-bg__vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(219, 234, 254, 0.35) 100%);
+  z-index: 3;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(219, 234, 254, 0.2) 100%);
   pointer-events: none;
 }
 
 .premium-bg__particles {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
   pointer-events: none;
 }
 
