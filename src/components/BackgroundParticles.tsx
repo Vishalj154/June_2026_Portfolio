@@ -28,18 +28,15 @@ export default function BackgroundParticles() {
       vx: number;
       vy: number;
       radius: number;
-      baseX: number;
-      baseY: number;
+      hue: number;
 
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        // Slow speed for micro-animations
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1; // slightly larger for visibility
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.radius = Math.random() * 1.5 + 0.8;
+        this.hue = Math.random() > 0.5 ? 220 : 270;
       }
 
       update() {
@@ -72,13 +69,13 @@ export default function BackgroundParticles() {
       draw(context: CanvasRenderingContext2D) {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        context.fillStyle = 'rgba(37, 99, 235, 0.35)'; // Primary blue particle
+        context.fillStyle = `hsla(${this.hue}, 70%, 55%, 0.22)`;
         context.fill();
       }
     }
 
     // Initialize particles array
-    const particleCount = Math.min(80, Math.floor((width * height) / 18000));
+    const particleCount = Math.min(65, Math.floor((width * height) / 22000));
     const particles: Particle[] = [];
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
@@ -103,8 +100,8 @@ export default function BackgroundParticles() {
 
           // Only draw lines if they are close
           if (dist < 120) {
-            const alpha = 0.08 * (1 - dist / 120);
-            ctx.strokeStyle = `rgba(124, 58, 237, ${alpha})`; // Purple connections
+            const alpha = 0.05 * (1 - dist / 120);
+            ctx.strokeStyle = `rgba(124, 58, 237, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -122,9 +119,8 @@ export default function BackgroundParticles() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < mouse.radius) {
-            const alpha = 0.22 * (1 - dist / mouse.radius);
-            // Draw a glowing gradient line from mouse to particle
-            ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`; // Blue mouse connection
+            const alpha = 0.14 * (1 - dist / mouse.radius);
+            ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
             ctx.lineWidth = 1.0;
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
@@ -137,7 +133,12 @@ export default function BackgroundParticles() {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    animate();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      animate();
+    } else {
+      particles.forEach((p) => p.draw(ctx));
+    }
 
     // Mouse Move Handlers
     const handleMouseMove = (e: MouseEvent) => {
@@ -174,15 +175,7 @@ export default function BackgroundParticles() {
     <canvas
       id="particle-canvas"
       ref={canvasRef}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 0,
-        pointerEvents: 'none',
-      }}
+      className="premium-bg__particles"
     />
   );
 }

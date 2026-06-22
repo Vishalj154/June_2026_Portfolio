@@ -29,8 +29,7 @@
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
-  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 30%, #ede9fe 70%, #dbeafe 100%);
-  background-attachment: fixed;
+  background: #eef6ff;
   color: var(--text-main);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -226,12 +225,6 @@ textarea.form-input { resize:vertical; min-height:130px; }
 .form-label {
   display:block; font-size:0.88rem; font-weight:500;
   color:var(--text-muted); margin-bottom:0.45rem;
-}
-
-/* GLOW ORBS */
-.orb {
-  position:fixed; border-radius:50%;
-  filter:blur(90px); pointer-events:none; z-index:0;
 }
 
 @media (max-width:768px) { section { padding:70px 1.2rem; } .section-title { font-size:2rem; } }
