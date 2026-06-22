@@ -5,7 +5,7 @@ import App from './App.tsx'
 
 import ReactGA from "react-ga4";
 
-ReactGA.initialize("G-8M3M38ZNQT");
+ReactGA.initialize("G-4J3N9JFKZZ");;
 
 ReactGA.send({
   hitType: "pageview",
